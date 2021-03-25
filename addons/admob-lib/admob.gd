@@ -1,6 +1,6 @@
 extends Node
 
-class_name AdMob, "res://admob-lib/icon.png"
+class_name AdMob, "res://addons/admob-lib/icon.png"
 
 # signals
 signal banner_loaded
