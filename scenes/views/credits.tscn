@@ -15,8 +15,7 @@ func setup() -> void:
 func unsetup() -> void:
 #	First, call the behaviour from the 'unsetup()' function in 'ViewTemplate.gd'
 	.unsetup()
-#	Add custom behaviour here
-"
+#	Add custom behaviour here"
 
 [node name="credits" instance=ExtResource( 1 )]
 script = SubResource( 1 )

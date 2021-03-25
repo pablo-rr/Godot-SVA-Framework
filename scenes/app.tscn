@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/views/main.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/views/credits.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/views/config.tscn" type="PackedScene" id=3]
 [ext_resource path="res://admob-lib/admob.gd" type="Script" id=4]
 [ext_resource path="res://scenes/views/highscores.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/views/pause.tscn" type="PackedScene" id=6]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Node2D
@@ -30,7 +31,7 @@ func pr(alert):
 [node name="app" type="Node2D"]
 script = SubResource( 1 )
 
-[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+[node name="backgroundMusic" type="AudioStreamPlayer" parent="."]
 autoplay = true
 bus = "Music"
 
@@ -73,6 +74,9 @@ visible = false
 [node name="highscores" parent="." instance=ExtResource( 5 )]
 visible = false
 position = Vector2( 0, -1 )
+
+[node name="pause" parent="." instance=ExtResource( 6 )]
+visible = false
 
 [node name="main" parent="." instance=ExtResource( 1 )]
 [connection signal="banner_failed_to_load" from="AdMob" to="." method="_on_AdMob_banner_failed_to_load"]

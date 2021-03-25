@@ -28,6 +28,7 @@ func unsetup() -> void:
 script = SubResource( 1 )
 
 [node name="cbRect" parent="ui" index="0" instance=ExtResource( 2 )]
+self_modulate = Color( 1, 0.4, 1, 1 )
 script = ExtResource( 3 )
 button_description = "config"
 button_color = "Pink"
