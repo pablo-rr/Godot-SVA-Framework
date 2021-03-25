@@ -16,6 +16,10 @@ func _ready() -> void:
 	connect("button_up", self, "release_action")
 
 func setup_color() -> void:
+	print(button_color)
+	print(button_description)
+	print(button_icon)
+	print("------------------------------------")
 	var new_color : Color
 	if(button_color == "Generic"):
 		new_color = PremadeColors.COLOR_GENERIC
@@ -54,16 +58,14 @@ func release_action() -> void:
 	$content.rect_position.y -= press_offset
 		
 func set_button_icon(icon : Texture) -> void:
-	if(Engine.editor_hint):
-		button_icon = icon
-		$content/icon.texture = icon
+	button_icon = icon
+	$content/icon.texture = icon
 	
 func set_button_description(desc : String) -> void:
-	if(get_node_or_null("content/buttonDesc") != null and Engine.editor_hint):
+	if(get_node_or_null("content/buttonDesc")):
 		button_description = desc
 		$content/buttonDesc.text = desc
 		
 func set_button_color(color : String) -> void:
-	if(Engine.editor_hint):
-		button_color = color
-		setup_color()
+	button_color = color
+	setup_color()
