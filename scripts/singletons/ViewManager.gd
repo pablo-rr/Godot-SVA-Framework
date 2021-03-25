@@ -23,7 +23,7 @@ func change_view(new_view : String) -> void:
 		for view in views:
 			views[view].visible = false
 		unsetup_view = latest_view
-		latest_view.visible = true
+		latest_view.visible = true	
 		view_node.setup()
 		view_node.visible = true
 		var tween : Tween = Tween.new()
@@ -34,7 +34,9 @@ func change_view(new_view : String) -> void:
 		tween.start()
 		latest_view = view_node
 		yield(get_tree().create_timer(1), "timeout")
-		unsetup_view.unsetup()
+#		Calling 'unsetup' in 'pause' view would make it unload. We don't want that
+		if(latest_view.name != "pause"):
+			unsetup_view.unsetup()
 		emit_signal("view_changed", view_node)
 		tween.queue_free()
 
@@ -50,3 +52,6 @@ func add_view(new_view : Node) -> void:
 	
 func set_latest_view(new_view : Node) -> void:
 	latest_view = new_view
+	
+func get_latest_view() -> Node:
+	return latest_view
