@@ -20,9 +20,9 @@ _global_script_class_icons={
 
 [application]
 
-config/name="SingleViewApp_template"
+config/name="Godot SVA Framework"
 run/main_scene="res://scenes/app.tscn"
-config/icon="res://icon.png"
+config/icon="res://art/sva_icon.png"
 
 [autoload]
 
