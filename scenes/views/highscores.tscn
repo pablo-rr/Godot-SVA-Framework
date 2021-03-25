@@ -93,3 +93,6 @@ valign = 1
 autowrap = true
 
 [node name="cbBackSquare" parent="ui" index="2" instance=ExtResource( 2 )]
+self_modulate = Color( 1, 0.431373, 0, 1 )
+keep_pressed_outside = true
+expand = true

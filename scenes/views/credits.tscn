@@ -15,13 +15,14 @@ func setup() -> void:
 func unsetup() -> void:
 #	First, call the behaviour from the 'unsetup()' function in 'ViewTemplate.gd'
 	.unsetup()
-#	Add custom behaviour here"
+#	Add custom behaviour here
+"
 
 [node name="credits" instance=ExtResource( 1 )]
 script = SubResource( 1 )
 
 [node name="cbSquare" parent="ui" index="0" instance=ExtResource( 2 )]
-self_modulate = Color( 0.670588, 0.415686, 0.415686, 1 )
+self_modulate = Color( 1, 0.701961, 0.901961, 1 )
 margin_left = 264.041
 margin_top = 383.449
 margin_right = 464.041
