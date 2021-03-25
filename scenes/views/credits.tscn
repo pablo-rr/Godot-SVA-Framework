@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/view_template.tscn" type="PackedScene" id=1]
+[ext_resource path="res://addons/CoolButtonsLibrary/buttons/cbSquare.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/CoolButtonsLibrary/scripts/premadeButtons/ButtonChangeView.gd" type="Script" id=3]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends \"res://scripts/views/ViewTemplate.gd\"
+
+func setup() -> void:
+#	First, call the behaviour from the 'setup()' function in 'ViewTemplate.gd'
+	.setup()
+#	Add custom behaviour here
+
+func unsetup() -> void:
+#	First, call the behaviour from the 'unsetup()' function in 'ViewTemplate.gd'
+	.unsetup()
+#	Add custom behaviour here
+"
+
+[node name="credits" instance=ExtResource( 1 )]
+script = SubResource( 1 )
+
+[node name="cbSquare" parent="ui" index="0" instance=ExtResource( 2 )]
+self_modulate = Color( 1, 0.701961, 0.901961, 1 )
+margin_left = 264.041
+margin_top = 383.449
+margin_right = 464.041
+margin_bottom = 583.449
+script = ExtResource( 3 )
+button_icon = null
+button_description = "desc"
+button_color = "Lavender"
+new_view = "main"

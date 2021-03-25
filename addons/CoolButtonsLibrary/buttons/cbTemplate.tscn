@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://art/sfx/buttonPress2.wav" type="AudioStream" id=1]
+
+[node name="cbTemplate" type="TextureButton"]
+margin_right = 355.0
+margin_bottom = 200.0
+keep_pressed_outside = true
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="content" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 25.0
+margin_top = 20.0
+margin_right = -25.0
+margin_bottom = -30.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="pressSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+pitch_scale = 0.8
+bus = "Sfx"

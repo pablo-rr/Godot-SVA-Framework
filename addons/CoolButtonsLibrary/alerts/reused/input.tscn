@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://fonts/resources/ubuntu_36.tres" type="DynamicFont" id=1]
+
+[sub_resource type="StyleBoxFlat" id=1]
+
+[sub_resource type="StyleBoxFlat" id=2]
+
+[sub_resource type="StyleBoxFlat" id=3]
+
+[node name="input" type="LineEdit"]
+margin_top = 282.0
+margin_right = 560.0
+margin_bottom = 318.0
+custom_styles/read_only = SubResource( 1 )
+custom_styles/focus = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = ExtResource( 1 )
+align = 1
+placeholder_text = "..."
+placeholder_alpha = 0.542
+caret_blink = true

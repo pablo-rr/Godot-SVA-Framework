@@ -1,0 +1,74 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://scenes/view_template.tscn" type="PackedScene" id=1]
+[ext_resource path="res://addons/CoolButtonsLibrary/buttons/cbSquare.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/CoolButtonsLibrary/scripts/premadeButtons/ButtonChangeView.gd" type="Script" id=3]
+[ext_resource path="res://addons/CoolButtonsLibrary/buttons/cbMuteSquare.tscn" type="PackedScene" id=4]
+[ext_resource path="res://art/icons/lg/playBtn.png" type="Texture" id=5]
+[ext_resource path="res://art/icons/sm/trophyIcon.png" type="Texture" id=6]
+[ext_resource path="res://addons/CoolButtonsLibrary/buttons/cbPauseSquare.tscn" type="PackedScene" id=7]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends \"res://scripts/views/ViewTemplate.gd\"
+
+func _ready() -> void:
+	visible = true
+	position = Vector2(0, 0)
+	ViewManager.set_latest_view(self)
+
+func setup() -> void:
+#	First, call the behaviour from the 'setup()' function in 'ViewTemplate.gd'
+	.setup()
+#	Add custom behaviour here
+
+func unsetup() -> void:
+#	First, call the behaviour from the 'unsetup()' function in 'ViewTemplate.gd'
+	.unsetup()
+#	Add custom behaviour here
+"
+
+[node name="main" instance=ExtResource( 1 )]
+script = SubResource( 1 )
+
+[node name="cbPlay" parent="ui" index="1" instance=ExtResource( 2 )]
+self_modulate = Color( 0, 0.666667, 1, 1 )
+margin_left = 110.0
+margin_top = 390.0
+margin_right = 610.0
+margin_bottom = 890.0
+rect_min_size = Vector2( 500, 500 )
+stretch_mode = 4
+script = ExtResource( 3 )
+button_icon = ExtResource( 5 )
+
+[node name="icon" parent="ui/cbPlay/content" index="0"]
+margin_left = 97.0
+margin_right = 353.0
+margin_bottom = 450.0
+texture = ExtResource( 5 )
+
+[node name="cbScores" parent="ui" index="2" instance=ExtResource( 2 )]
+self_modulate = Color( 0.196078, 1, 0.196078, 1 )
+margin_left = 490.0
+margin_top = 1050.0
+margin_right = 690.0
+margin_bottom = 1250.0
+script = ExtResource( 3 )
+button_icon = ExtResource( 6 )
+button_color = "Success"
+new_view = "highscores"
+
+[node name="cbMuteSquare" parent="ui" index="3" instance=ExtResource( 4 )]
+margin_left = 30.0
+margin_top = 1050.0
+margin_right = 230.0
+margin_bottom = 1250.0
+keep_pressed_outside = true
+expand = true
+
+[node name="cbPauseSquare" parent="ui" index="4" instance=ExtResource( 7 )]
+self_modulate = Color( 1, 0.431373, 0, 1 )
+keep_pressed_outside = true
+expand = true
+
+[editable path="ui/cbPlay"]

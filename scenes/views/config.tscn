@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/view_template.tscn" type="PackedScene" id=1]
+[ext_resource path="res://addons/CoolButtonsLibrary/buttons/cbRectW.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/CoolButtonsLibrary/scripts/premadeButtons/ButtonChangeView.gd" type="Script" id=3]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends \"res://scripts/views/ViewTemplate.gd\"
+
+func setup() -> void:
+#	First, call the behaviour from the 'setup()' function in 'ViewTemplate.gd'
+	.setup()
+#	Add custom behaviour here
+
+func unsetup() -> void:
+#	First, call the behaviour from the 'unsetup()' function in 'ViewTemplate.gd'
+	.unsetup()
+#	Add custom behaviour here
+"
+
+[node name="config" instance=ExtResource( 1 )]
+script = SubResource( 1 )
+
+[node name="cbTemplate" parent="ui" index="0" instance=ExtResource( 2 )]
+self_modulate = Color( 0.203922, 1, 0.215686, 1 )
+margin_left = 213.268
+margin_top = 749.805
+margin_right = 715.268
+margin_bottom = 949.805
+script = ExtResource( 3 )
+button_color = "Purple"
+new_view = "credits"

@@ -1,0 +1,76 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://scenes/views/main.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/views/credits.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/views/config.tscn" type="PackedScene" id=3]
+[ext_resource path="res://addons/admob-lib/admob.gd" type="Script" id=4]
+[ext_resource path="res://scenes/views/highscores.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/views/pause.tscn" type="PackedScene" id=6]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node2D
+
+# Add behaviour to the 'app' Node2D here
+
+func _ready() -> void:
+	$AdMob.load_banner()
+	$AdMob.load_interstitial()
+	$AdMob.load_rewarded_video()
+"
+
+[sub_resource type="Theme" id=2]
+
+[node name="app" type="Node2D"]
+pause_mode = 2
+script = SubResource( 1 )
+
+[node name="backgroundMusic" type="AudioStreamPlayer" parent="."]
+autoplay = true
+bus = "Music"
+
+[node name="AdMob" type="Node" parent="."]
+script = ExtResource( 4 )
+banner_on_top = false
+banner_size = "SMART_BANNER"
+banner_id = "ca-app-pub-3940256099942544/6300978111"
+interstitial_id = "ca-app-pub-3940256099942544/1033173712"
+rewarded_id = "ca-app-pub-3940256099942544/5224354917"
+is_personalized = false
+
+[node name="ui" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 720.0
+margin_bottom = 1280.0
+rect_min_size = Vector2( 720, 1280 )
+theme = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="background" type="ColorRect" parent="ui"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0588235, 0.133333, 0.188235, 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="credits" parent="." instance=ExtResource( 2 )]
+visible = false
+
+[node name="config" parent="." instance=ExtResource( 3 )]
+visible = false
+
+[node name="highscores" parent="." instance=ExtResource( 5 )]
+visible = false
+position = Vector2( 0, -1 )
+
+[node name="pause" parent="." instance=ExtResource( 6 )]
+visible = false
+
+[node name="main" parent="." instance=ExtResource( 1 )]
+[connection signal="banner_failed_to_load" from="AdMob" to="." method="_on_AdMob_banner_failed_to_load"]
+[connection signal="banner_loaded" from="AdMob" to="." method="_on_AdMob_banner_loaded"]

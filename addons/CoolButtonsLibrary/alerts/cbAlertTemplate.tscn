@@ -1,0 +1,73 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://addons/CoolButtonsLibrary/buttons/cbRect.tscn" type="PackedScene" id=1]
+[ext_resource path="res://fonts/resources/ubuntu_36.tres" type="DynamicFont" id=2]
+[ext_resource path="res://art/icons/xs/tickIcon.png" type="Texture" id=3]
+[ext_resource path="res://addons/CoolButtonsLibrary/art/squared_push.png" type="Texture" id=4]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends \"res://addons/CoolButtonsLibrary/scripts/premadeButtons/ButtonChangeView.gd\"
+
+func release_action() -> void:
+	.release_action()
+	get_parent().hide()
+"
+
+[node name="cbAlertTemplate" type="TextureRect"]
+margin_top = -1280.0
+margin_right = 720.0
+margin_bottom = -560.0
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="content" type="VBoxContainer" parent="."]
+margin_left = 80.0
+margin_top = 100.0
+margin_right = 640.0
+margin_bottom = 418.0
+rect_min_size = Vector2( 560, 318 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="alertDesc" type="Label" parent="content"]
+margin_right = 560.0
+margin_bottom = 314.0
+rect_min_size = Vector2( 560, 250 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="icon" type="TextureRect" parent="content"]
+margin_top = 318.0
+margin_right = 560.0
+margin_bottom = 318.0
+size_flags_horizontal = 3
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="cbOk" parent="." instance=ExtResource( 1 )]
+self_modulate = Color( 0, 0.666667, 1, 1 )
+margin_left = 182.0
+margin_top = 440.0
+margin_right = 537.0
+margin_bottom = 640.0
+script = SubResource( 1 )
+button_icon = ExtResource( 3 )
+button_description = "OK"
+button_color = "Success"

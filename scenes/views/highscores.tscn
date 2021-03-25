@@ -1,0 +1,98 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/view_template.tscn" type="PackedScene" id=1]
+[ext_resource path="res://addons/CoolButtonsLibrary/buttons/cbBackSquare.tscn" type="PackedScene" id=2]
+[ext_resource path="res://fonts/resources/ubuntu_48.tres" type="DynamicFont" id=3]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends \"res://scripts/views/ViewTemplate.gd\"
+
+func setup() -> void:
+#	First, call the behaviour from the 'setup()' function in 'ViewTemplate.gd'
+	.setup()
+#	Add custom behaviour here
+	$ui/scoreboard/score_template.visible = true
+	var scores : Dictionary = ScoreManager.get_scores()
+	for key in scores.size():
+		var score_label : HBoxContainer = $ui/scoreboard/score_template.duplicate()
+		var real_position : int = (int(key) + 1)
+		score_label.name = \"score\"
+		score_label.get_node(\"position\").text = str(real_position)
+		score_label.get_node(\"score\").text = str(scores[str(key)].score)
+		score_label.get_node(\"player\").text = str(scores[str(key)].player)
+		$ui/scoreboard.add_child(score_label)
+		
+	$ui/scoreboard/score_template.visible = false
+	
+func unsetup() -> void:
+#	First, call the behaviour from the 'unsetup()' function in 'ViewTemplate.gd'
+	.unsetup()
+#	Add custom behaviour here
+	for i in $ui/scoreboard.get_child_count():
+		if($ui/scoreboard.get_child(i).name != \"score_template\"):
+			$ui/scoreboard.get_child(i).queue_free()
+"
+
+[node name="highscores" instance=ExtResource( 1 )]
+script = SubResource( 1 )
+
+[node name="title" parent="ui" index="0"]
+margin_right = 720.0
+margin_bottom = 320.0
+text = "highscores"
+
+[node name="scoreboard" type="VBoxContainer" parent="ui" index="1"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 300.0
+margin_bottom = -340.0
+rect_min_size = Vector2( 360, 640 )
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="score_template" type="HBoxContainer" parent="ui/scoreboard" index="0"]
+margin_top = 296.0
+margin_right = 720.0
+margin_bottom = 344.0
+custom_constants/separation = 50
+
+[node name="position" type="Label" parent="ui/scoreboard/score_template" index="0"]
+margin_right = 206.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 3 )
+text = "[score]"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="score" type="Label" parent="ui/scoreboard/score_template" index="1"]
+margin_left = 256.0
+margin_right = 463.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 3 )
+text = "[score]"
+align = 2
+valign = 1
+autowrap = true
+
+[node name="player" type="Label" parent="ui/scoreboard/score_template" index="2"]
+margin_left = 513.0
+margin_right = 720.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 3 )
+text = "[score]"
+valign = 1
+autowrap = true
+
+[node name="cbBackSquare" parent="ui" index="2" instance=ExtResource( 2 )]
+self_modulate = Color( 1, 0.431373, 0, 1 )
+keep_pressed_outside = true
+expand = true

@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://addons/CoolButtonsLibrary/alerts/cbAlertTemplate.tscn" type="PackedScene" id=1]
+[ext_resource path="res://addons/CoolButtonsLibrary/buttons/cbRect.tscn" type="PackedScene" id=2]
+[ext_resource path="res://art/icons/xs/closeBtn.png" type="Texture" id=3]
+[ext_resource path="res://addons/CoolButtonsLibrary/scripts/AlertController.gd" type="Script" id=4]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends \"res://addons/CoolButtonsLibrary/scripts/ButtonController.gd\"
+
+func release_action() -> void:
+	.release_action()
+	get_parent().hide()
+"
+
+[node name="cbAlertChoice" instance=ExtResource( 1 )]
+script = ExtResource( 4 )
+
+[node name="cbOk" parent="." index="1"]
+margin_left = 375.0
+margin_top = 510.0
+margin_right = 641.0
+margin_bottom = 660.0
+rect_min_size = Vector2( 266, 150 )
+
+[node name="cbCancel" parent="." index="2" instance=ExtResource( 2 )]
+margin_left = 80.0
+margin_top = 510.0
+margin_right = 346.0
+margin_bottom = 660.0
+rect_min_size = Vector2( 266, 150 )
+rect_pivot_offset = Vector2( 1527.72, 822.377 )
+script = SubResource( 1 )
+button_icon = ExtResource( 3 )
+button_description = "cancel"
+button_color = "Error"

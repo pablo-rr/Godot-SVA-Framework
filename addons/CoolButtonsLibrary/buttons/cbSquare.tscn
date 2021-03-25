@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://addons/CoolButtonsLibrary/buttons/cbTemplate.tscn" type="PackedScene" id=1]
+[ext_resource path="res://addons/CoolButtonsLibrary/art/squared_push.png" type="Texture" id=2]
+[ext_resource path="res://addons/CoolButtonsLibrary/art/squared.png" type="Texture" id=3]
+[ext_resource path="res://addons/CoolButtonsLibrary/art/icon.png" type="Texture" id=4]
+
+[node name="cbSquare" instance=ExtResource( 1 )]
+margin_right = 200.0
+rect_min_size = Vector2( 200, 200 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 2 )
+
+[node name="icon" type="TextureRect" parent="content" index="0"]
+margin_left = 43.0
+margin_right = 107.0
+margin_bottom = 150.0
+texture = ExtResource( 4 )
+stretch_mode = 4

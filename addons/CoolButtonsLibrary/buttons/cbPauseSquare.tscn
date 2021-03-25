@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://addons/CoolButtonsLibrary/buttons/cbSquare.tscn" type="PackedScene" id=1]
+[ext_resource path="res://addons/CoolButtonsLibrary/scripts/premadeButtons/ButtonChangeView.gd" type="Script" id=2]
+[ext_resource path="res://art/icons/xs/pauseBtn.png" type="Texture" id=3]
+
+[node name="cbPauseSquare" instance=ExtResource( 1 )]
+self_modulate = Color( 1, 0.431373, 0, 1 )
+margin_left = 30.0
+margin_top = 30.0
+margin_right = 150.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 100, 100 )
+script = ExtResource( 2 )
+button_icon = ExtResource( 3 )
+button_color = "Orange"
+new_view = "pause"
+
+[node name="icon" parent="content" index="0"]
+margin_left = 3.0
+margin_right = 67.0
+margin_bottom = 70.0
+texture = ExtResource( 3 )

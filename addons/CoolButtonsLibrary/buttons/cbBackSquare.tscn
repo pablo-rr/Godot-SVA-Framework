@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://addons/CoolButtonsLibrary/buttons/cbSquare.tscn" type="PackedScene" id=1]
+[ext_resource path="res://addons/CoolButtonsLibrary/scripts/premadeButtons/ButtonChangeView.gd" type="Script" id=2]
+[ext_resource path="res://art/icons/sm/backBtn.png" type="Texture" id=3]
+
+[node name="cbBackSquare" instance=ExtResource( 1 )]
+margin_left = 30.0
+margin_top = 1050.0
+margin_right = 230.0
+margin_bottom = 1250.0
+script = ExtResource( 2 )
+button_icon = ExtResource( 3 )
+button_color = "Orange"

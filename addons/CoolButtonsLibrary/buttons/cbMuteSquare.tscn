@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://addons/CoolButtonsLibrary/buttons/cbSquare.tscn" type="PackedScene" id=1]
+[ext_resource path="res://art/icons/sm/soundOnBtn.png" type="Texture" id=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "tool
+extends \"res://addons/CoolButtonsLibrary/scripts/ButtonController.gd\"
+
+const TEXTURE_SOUND_ON : Texture = preload(\"res://art/icons/sm/soundOnBtn.png\")
+const TEXTURE_SOUND_OFF : Texture = preload(\"res://art/icons/sm/soundOffBtn.png\")
+
+func _ready() -> void:
+	AudioManager.add_mute_button(self)
+
+func release_action() -> void:
+	.release_action()
+	AudioManager.set_channel_mute(\"Master\", !AudioManager.get_channel_mute(\"Master\"))
+	AudioManager.set_mute_buttons(AudioManager.get_channel_mute(\"Master\"))
+	set_mute(AudioManager.get_channel_mute(\"Master\"))
+		
+func set_mute(muted : bool) -> void:
+	if(AudioManager.get_channel_mute(\"Master\")):
+		$content/icon.texture = TEXTURE_SOUND_OFF
+	elif(!AudioManager.get_channel_mute(\"Master\")):
+		$content/icon.texture = TEXTURE_SOUND_ON
+"
+
+[node name="cbMuteSquare" instance=ExtResource( 1 )]
+self_modulate = Color( 1, 0.431373, 0, 1 )
+script = SubResource( 1 )
+button_icon = ExtResource( 2 )
+button_color = "Orange"
+
+[node name="icon" parent="content" index="0"]
+margin_left = 11.0
+margin_right = 139.0
+texture = ExtResource( 2 )
