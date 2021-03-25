@@ -1,3 +1,4 @@
+tool
 extends TextureButton
 
 signal button_released
@@ -5,7 +6,7 @@ signal button_pressed
 
 export var button_icon : Texture = null setget set_button_icon
 export var button_description : String = "desc" setget set_button_description
-export(String, "Self modulation", "Generic", "Success", "Error", "Warn", "White", "Lavender", "Pink", "Purple", "Orange") var button_color : String = "Generic"
+export(String, "Self modulation", "Generic", "Success", "Error", "Warn", "White", "Lavender", "Pink", "Purple", "Orange") var button_color : String = "Generic" setget set_button_color
 
 onready var press_offset : int = rect_size.y/20
 
@@ -53,10 +54,16 @@ func release_action() -> void:
 	$content.rect_position.y -= press_offset
 		
 func set_button_icon(icon : Texture) -> void:
-	button_icon = icon
-	$content/icon.texture = icon
+	if(Engine.editor_hint):
+		button_icon = icon
+		$content/icon.texture = icon
 	
 func set_button_description(desc : String) -> void:
-	if(get_node_or_null("content/buttonDesc") != null):
+	if(get_node_or_null("content/buttonDesc") != null and Engine.editor_hint):
 		button_description = desc
 		$content/buttonDesc.text = desc
+		
+func set_button_color(color : String) -> void:
+	if(Engine.editor_hint):
+		button_color = color
+		setup_color()

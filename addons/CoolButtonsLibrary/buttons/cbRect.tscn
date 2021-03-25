@@ -6,6 +6,7 @@
 [ext_resource path="res://fonts/resources/ubuntu_48.tres" type="DynamicFont" id=5]
 
 [node name="cbRect" instance=ExtResource( 3 )]
+rect_min_size = Vector2( 355, 200 )
 texture_normal = ExtResource( 1 )
 texture_pressed = ExtResource( 2 )
 

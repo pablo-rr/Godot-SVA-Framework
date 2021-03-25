@@ -4,7 +4,8 @@
 [ext_resource path="res://art/icons/sm/soundOnBtn.png" type="Texture" id=2]
 
 [sub_resource type="GDScript" id=1]
-script/source = "extends \"res://addons/CoolButtonsLibrary/scripts/ButtonController.gd\"
+script/source = "tool
+extends \"res://addons/CoolButtonsLibrary/scripts/ButtonController.gd\"
 
 const TEXTURE_SOUND_ON : Texture = preload(\"res://art/icons/sm/soundOnBtn.png\")
 const TEXTURE_SOUND_OFF : Texture = preload(\"res://art/icons/sm/soundOffBtn.png\")
@@ -26,7 +27,12 @@ func set_mute(muted : bool) -> void:
 "
 
 [node name="cbMuteSquare" instance=ExtResource( 1 )]
+self_modulate = Color( 1, 0.431373, 0, 1 )
 script = SubResource( 1 )
 button_icon = ExtResource( 2 )
-button_description = "m"
 button_color = "Orange"
+
+[node name="icon" parent="content" index="0"]
+margin_left = 11.0
+margin_right = 139.0
+texture = ExtResource( 2 )

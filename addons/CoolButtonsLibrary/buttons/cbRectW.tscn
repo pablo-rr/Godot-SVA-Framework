@@ -7,6 +7,7 @@
 
 [node name="cbTemplate" instance=ExtResource( 3 )]
 margin_right = 502.0
+rect_min_size = Vector2( 502, 200 )
 texture_normal = ExtResource( 2 )
 texture_pressed = ExtResource( 1 )
 
